@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News - Soroti School of Comprehensive Nursing</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="index.html" class="logo">SSCN</a>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li><a href="programs.html" class="nav-link">Programs</a></li>
+                    <li><a href="admissions.html" class="nav-link">Admissions</a></li>
+                    <li><a href="campus-life.html" class="nav-link">Campus Life</a></li>
+                    <li><a href="news.html" class="nav-link active">News</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <button class="menu-toggle">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="sidebar">
+        <button class="close-sidebar">×</button>
+        <ul class="sidebar-links">
+            <li><a href="index.html" class="sidebar-link">Home</a></li>
+            <li><a href="about.html" class="sidebar-link">About Us</a></li>
+            <li><a href="programs.html" class="sidebar-link">Programs</a></li>
+            <li><a href="admissions.html" class="sidebar-link">Admissions</a></li>
+            <li><a href="campus-life.html" class="sidebar-link">Campus Life</a></li>
+            <li><a href="news.html" class="sidebar-link active">News</a></li>
+            <li><a href="index.html#contact" class="sidebar-link">Contact</a></li>
+        </ul>
+    </div>
+    <div class="overlay"></div>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Latest News & Updates</h1>
+            </div>
+        </section>
+
+        <section class="news-page-section">
+            <div class="container">
+                <div id="news-container" class="news-container">
+                    <!-- News posts will be injected here by JavaScript -->
+                </div>
+                <div id="pagination-container" class="pagination-container">
+                    <!-- Pagination links will be injected here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Soroti School of Comprehensive Nursing</p>
+        </div>
+    </footer>
+
+    <button id="dark-mode-toggle">🌙</button>
+    <button id="scroll-top-btn">↑</button>
+    <div id="news-toast" class="news-toast"></div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
