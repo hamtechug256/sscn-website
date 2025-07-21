@@ -1,4 +1,3 @@
-
 [
   {
     "id": 4,
@@ -6,7 +5,7 @@
     "date": "2025-07-21",
     "author": "Student Affairs Office",
     "summary": "The new mentorship program pairs final-year students with incoming first-years to provide guidance, support, and a friendly face on campus.",
-    "content": "<p>In a move to foster a stronger, more supportive student community, the Student Affairs Office has officially launched the annual SSCN Mentorship Program. This initiative pairs experienced final-year students with new, incoming students to help them navigate the challenges and opportunities of their academic journey.</p><p>Mentors will provide academic guidance, share practical tips for clinical placements, and offer personal support to help first-years acclimate to campus life. We believe this program will not only improve academic outcomes but also build lasting professional relationships.</p><img src='images/counseling.jpg' alt='Students in a discussion' style='width:100%; border-radius: 8px; margin-top: 15px;'>"
+    "content": "<p>In a move to foster a stronger, more supportive student community, the Student Affairs Office has officially launched the annual SSCN Mentorship Program. This initiative pairs experienced final-year students with new, incoming students to help them navigate the challenges and opportunities of their academic journey.</p><p>Mentors will provide academic guidance, share practical tips for clinical placements, and offer personal support to help first-years acclimate to campus life. We believe this program will not only improve academic outcomes but also build lasting professional relationships.</p><img src='images/counseling.jpg' alt='Students in a discussion' style='width:100%; border-radius: 8px; margin-top: 15px;' loading='lazy'>"
   },
   {
     "id": 3,
@@ -14,7 +13,7 @@
     "date": "2025-07-20",
     "author": "Jane Doe",
     "summary": "Our annual health fair was a massive success, providing free check-ups and health education to over 500 members of the Soroti community...",
-    "content": "<p>Our annual health fair was a massive success, providing free check-ups and health education to over 500 members of the Soroti community. The event, held on the main campus grounds, featured stations for blood pressure screening, nutritional counseling, and vaccination drives.</p><p>We extend our heartfelt thanks to all the student volunteers and faculty members who dedicated their time and expertise. This event underscores our commitment to community well-being, a core value we instill in all our students.</p><img src='images/community_outreach.jpg' alt='Health fair volunteers' style='width:100%; border-radius: 8px; margin-top: 15px;'>"
+    "content": "<p>Our annual health fair was a massive success, providing free check-ups and health education to over 500 members of the Soroti community. The event, held on the main campus grounds, featured stations for blood pressure screening, nutritional counseling, and vaccination drives.</p><p>We extend our heartfelt thanks to all the student volunteers and faculty members who dedicated their time and expertise. This event underscores our commitment to community well-being, a core value we instill in all our students.</p><img src='images/community_outreach.jpg' alt='Health fair volunteers' style='width:100%; border-radius: 8px; margin-top: 15px;' loading='lazy'>"
   },
   {
     "id": 2,

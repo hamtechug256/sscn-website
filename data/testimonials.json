@@ -1,0 +1,21 @@
+
+[
+  {
+    "id": 1,
+    "name": "Dr. Emily R. (Class of 2020)",
+    "quote": "SSCN provided me with an unparalleled foundation in nursing. The dedicated faculty and hands-on clinical experience prepared me for the rigors of critical care. I'm now a lead nurse in a major hospital, and I owe so much to my time here.",
+    "image": "images/alumni1.jpg"
+  },
+  {
+    "id": 2,
+    "name": "John D. (Class of 2021)",
+    "quote": "The midwifery program at SSCN was transformative. I gained not just theoretical knowledge but also the confidence to support mothers through one of life's most important journeys. The community outreach programs were particularly impactful.",
+    "image": "images/alumni2.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Sarah K. (Class of 2019)",
+    "quote": "Choosing SSCN was the best decision for my career. The modern facilities and emphasis on practical skills made learning engaging and effective. I felt ready for the challenges of the healthcare sector from day one.",
+    "image": "images/alumni3.jpg"
+  }
+]

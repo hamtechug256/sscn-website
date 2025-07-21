@@ -62,6 +62,9 @@
 
         <section class="news-page-section">
             <div class="container">
+                <div class="search-bar">
+                    <input type="text" id="news-search" placeholder="Search news...">
+                </div>
                 <div id="news-container" class="news-container">
                     <!-- News posts will be injected here by JavaScript -->
                 </div>
@@ -78,8 +81,7 @@
         </div>
     </footer>
 
-    <button id="dark-mode-toggle">🌙</button>
-    <button id="scroll-top-btn">↑</button>
+    <button id="scroll-top-btn" aria-label="Scroll to top">↑</button>
     <div id="news-toast" class="news-toast"></div>
 
     <script src="js/script.js"></script>
