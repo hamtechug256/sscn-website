@@ -1,5 +1,14 @@
 [
   {
+    "id": 5,
+    "title": "A Day in the Life of a Nursing Student at SSCN",
+    "date": "2025-07-29",
+    "author": "SSCN Editorial Team",
+    "image": "images/nursing_students.webp",
+    "summary": "Ever wonder what a typical day is like for a student at the Soroti School of Comprehensive Nursing? We followed a first-year student to find out.",
+    "content": "<p>The life of a nursing student at SSCN is a blend of rigorous academic learning, hands-on clinical practice, and vibrant campus community. We followed Acen, a first-year Diploma in Nursing student, to give you a glimpse into a typical day.</p><h5>Morning: Classroom and Labs</h5><p>The day begins at 8:00 AM with a lecture on Anatomy and Physiology. Our lecturer, Mr. Okello, uses interactive models to explain complex concepts, making learning engaging. After the lecture, it's straight to the skills lab. Today, we're practicing how to properly administer injections using the new simulation manikins. It's nerve-wracking but essential practice that builds our confidence.</p><h5>Afternoon: Clinical Rotations and Community</h5><p>After a quick lunch at the campus canteen, Acen heads to Soroti Regional Referral Hospital for her clinical rotation. Under the watchful eye of a clinical instructor, she learns to take patient vitals, document observations, and provide basic care. It's a challenging but rewarding experience that connects classroom theory to real-world patient needs.</p><h5>Evening: Study and Relaxation</h5><p>The day concludes back on campus. Evenings are for reviewing notes, preparing for the next day's classes, and collaborating with classmates in study groups. But it's not all work. Acen makes sure to find time for a game of netball with friends before retiring for the night, ready to do it all again tomorrow.</p><p>Being a nursing student is demanding, but at SSCN, the supportive faculty and strong sense of community make the journey an inspiring one.</p>"
+  },
+  {
     "id": 4,
     "title": "SSCN Launches Annual Mentorship Program",
     "date": "2025-07-21",

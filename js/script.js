@@ -30,71 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Smooth Scroll-Reveal Animations
+    // 3. Smooth Scroll-Reveal Animations (Optimized with Batching)
     gsap.registerPlugin(ScrollTrigger);
 
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent) {
-        const tl = gsap.timeline();
-        tl.from(heroContent.querySelector('h1'), { opacity: 0, y: 50, duration: 1, ease: 'power3.out' })
-          .from(heroContent.querySelector('p'), { opacity: 0, y: 30, duration: 0.8, ease: 'power3.out' }, "-=0.7")
-          .from(heroContent.querySelector('.hero-buttons'), { opacity: 0, y: 20, duration: 0.6, ease: 'power3.out' }, "-=0.6")
-          .from(".hero-image", { opacity: 0, scale: 0.9, duration: 1, ease: 'power3.out' }, "-=0.8");
-
-        // Add this for hero parallax effect
-        const hero = document.querySelector('.hero');
-        hero.addEventListener('mousemove', (e) => {
-            const { clientX, clientY } = e;
-            const x = (clientX / window.innerWidth) - 0.5;
-            const y = (clientY / window.innerHeight) - 0.5;
-
-            gsap.to(heroContent.querySelector('h1'), {
-                x: -x * 50,
-                y: -y * 30,
-                duration: 0.5,
-                ease: 'power2.out'
-            });
-            gsap.to(heroContent.querySelector('p'), {
-                x: x * 40,
-                y: y * 20,
-                duration: 0.5,
-                ease: 'power2.out'
-            });
-            gsap.to(heroContent.querySelector('.hero-buttons'), {
-                x: -x * 30,
-                y: -y * 15,
-                duration: 0.5,
-                ease: 'power2.out'
-            });
-        });
-
-        gsap.to(".hero", {
-            backgroundPosition: "50% 100%",
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".hero",
-                start: "top top",
-                end: "bottom top",
-                scrub: true
-            }
-        });
-    }
-
-    document.querySelectorAll('.scroll-reveal').forEach(el => {
-        gsap.fromTo(el, 
-            { opacity: 0, y: 50 }, // from state
-            { // to state
-                opacity: 1, 
-                y: 0, 
-                duration: 1, 
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: el,
-                    start: "top 90%", // Start animation when element is 10% from the bottom of the viewport
-                    toggleActions: "play none none none",
-                }
-            }
-        );
+    ScrollTrigger.batch(".scroll-reveal", {
+        interval: 0.1, // time window (in seconds) for batching to occur.
+        batchMax: 3,   // maximum number of elements in a batch (can be any number)
+        onEnter: batch => gsap.to(batch, {opacity: 1, y: 0, stagger: 0.15, ease: 'power3.out'}),
+        // you can also define things like onLeave, onEnterBack, etc.
     });
 
     // 4. Back to Top Button
@@ -402,4 +345,27 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // 11. OneSignal Subscription Prompt
+    const promptOneSignal = () => {
+        // Check if the prompt has already been shown in this session
+        if (sessionStorage.getItem('oneSignalPromptShown') === 'true') {
+            return;
+        }
+
+        OneSignalDeferred.push(function(OneSignal) {
+            OneSignal.isPushNotificationsEnabled(function(isEnabled) {
+                if (!isEnabled) {
+                    // Show the slide prompt
+                    OneSignal.showSlidedownPrompt();
+                }
+            });
+        });
+
+        // Mark the prompt as shown for this session
+        sessionStorage.setItem('oneSignalPromptShown', 'true');
+    };
+
+    // Call the function to prompt users
+    // promptOneSignal();
 });
