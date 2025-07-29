@@ -1,0 +1,14 @@
+:root {
+    --primary-color: #4CAF50; /* Main brand color */
+    --secondary-color: #FF5722; /* Accent color */
+    --background-color: #FFFFFF; /* Background color */
+    --text-color: #333333; /* Main text color */
+    --heading-color: #212121; /* Heading text color */
+    --link-color: #1E88E5; /* Link color */
+    --link-hover-color: #0D47A1; /* Link hover color */
+    --border-radius: 8px; /* Standard border radius */
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Standard box shadow */
+    --font-family-primary: 'Poppins', sans-serif; /* Primary font */
+    --font-family-secondary: 'Lora', serif; /* Secondary font */
+    --max-width: 1200px; /* Max width for containers */
+}

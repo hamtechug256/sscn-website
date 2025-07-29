@@ -1,0 +1,43 @@
+[
+  {
+    "id": 5,
+    "title": "A Day in the Life of a Nursing Student at SSCN",
+    "date": "2025-07-29",
+    "author": "SSCN Editorial Team",
+    "image": "images/nursing_students.webp",
+    "summary": "Ever wonder what a typical day is like for a student at the Soroti School of Comprehensive Nursing? We followed a first-year student to find out.",
+    "content": "<p>The life of a nursing student at SSCN is a blend of rigorous academic learning, hands-on clinical practice, and vibrant campus community. We followed Acen, a first-year Diploma in Nursing student, to give you a glimpse into a typical day.</p><h5>Morning: Classroom and Labs</h5><p>The day begins at 8:00 AM with a lecture on Anatomy and Physiology. Our lecturer, Mr. Okello, uses interactive models to explain complex concepts, making learning engaging. After the lecture, it's straight to the skills lab. Today, we're practicing how to properly administer injections using the new simulation manikins. It's nerve-wracking but essential practice that builds our confidence.</p><h5>Afternoon: Clinical Rotations and Community</h5><p>After a quick lunch at the campus canteen, Acen heads to Soroti Regional Referral Hospital for her clinical rotation. Under the watchful eye of a clinical instructor, she learns to take patient vitals, document observations, and provide basic care. It's a challenging but rewarding experience that connects classroom theory to real-world patient needs.</p><h5>Evening: Study and Relaxation</h5><p>The day concludes back on campus. Evenings are for reviewing notes, preparing for the next day's classes, and collaborating with classmates in study groups. But it's not all work. Acen makes sure to find time for a game of netball with friends before retiring for the night, ready to do it all again tomorrow.</p><p>Being a nursing student is demanding, but at SSCN, the supportive faculty and strong sense of community make the journey an inspiring one.</p>"
+  },
+  {
+    "id": 4,
+    "title": "SSCN Launches Annual Mentorship Program",
+    "date": "2025-07-21",
+    "author": "Student Affairs Office",
+    "summary": "The new mentorship program pairs final-year students with incoming first-years to provide guidance, support, and a friendly face on campus.",
+    "content": "<p>In a move to foster a stronger, more supportive student community, the Student Affairs Office has officially launched the annual SSCN Mentorship Program. This initiative pairs experienced final-year students with new, incoming students to help them navigate the challenges and opportunities of their academic journey.</p><p>Mentors will provide academic guidance, share practical tips for clinical placements, and offer personal support to help first-years acclimate to campus life. We believe this program will not only improve academic outcomes but also build lasting professional relationships.</p><img src='images/counseling.jpg' alt='Students in a discussion' style='width:100%; border-radius: 8px; margin-top: 15px;' loading='lazy'>"
+  },
+  {
+    "id": 3,
+    "title": "SSCN Hosts Annual Community Health Fair",
+    "date": "2025-07-20",
+    "author": "Jane Doe",
+    "summary": "Our annual health fair was a massive success, providing free check-ups and health education to over 500 members of the Soroti community...",
+    "content": "<p>Our annual health fair was a massive success, providing free check-ups and health education to over 500 members of the Soroti community. The event, held on the main campus grounds, featured stations for blood pressure screening, nutritional counseling, and vaccination drives.</p><p>We extend our heartfelt thanks to all the student volunteers and faculty members who dedicated their time and expertise. This event underscores our commitment to community well-being, a core value we instill in all our students.</p><img src='images/community_outreach.jpg' alt='Health fair volunteers' style='width:100%; border-radius: 8px; margin-top: 15px;' loading='lazy'>"
+  },
+  {
+    "id": 2,
+    "title": "New Simulation Lab Unveiled",
+    "date": "2025-07-15",
+    "author": "Admin",
+    "summary": "We are thrilled to announce the opening of our new state-of-the-art clinical simulation laboratory, designed to give students hands-on experience...",
+    "content": "<p>We are thrilled to announce the opening of our new state-of-the-art clinical simulation laboratory. This facility is equipped with high-fidelity manikins and real-world medical equipment, allowing students to practice critical skills in a safe, controlled environment before entering clinical placements.</p>"
+  },
+  {
+    "id": 1,
+    "title": "Welcome to the New Academic Year",
+    "date": "2025-07-10",
+    "author": "Admin",
+    "summary": "A warm welcome to all new and returning students for the 2025 academic year. We are excited for a year of learning, growth, and excellence.",
+    "content": "<p>A warm welcome to all new and returning students for the 2025 academic year. We are excited for a year of learning, growth, and excellence. This year, we are introducing several new student support initiatives and look forward to seeing you all on campus.</p>"
+  }
+]

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Post | Soroti School of Comprehensive Nursing</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "ff8e7f90-2047-4033-952c-c34d8b121b09",
+        });
+      });
+    </script>
+</head>
+<body>
+    <!-- Read Progress Indicator -->
+    <div id="read-progress-bar"></div>
+
+    <!--================================================
+      HEADER & NAVIGATION
+    ================================================-->
+    <header class="main-header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="index.html" class="logo">SSCN<span>.</span></a>
+                <ul class="nav-links">
+                    <li class="nav-link"><a href="index.html">Home</a></li>
+                    <li class="nav-link"><a href="about.html">About Us</a></li>
+                    <li class="nav-link"><a href="programs.html">Programs</a></li>
+                    <li class="nav-link"><a href="admissions.html">Admissions</a></li>
+                    <li class="nav-link"><a href="campus-life.html">Campus Life</a></li>
+                    <li class="nav-link"><a href="news.html">News</a></li>
+                    <li class="nav-link"><a href="gallery.html">Gallery</a></li>
+                    <li class="nav-link"><a href="campus-map.html">Campus Map</a></li>
+                    <li class="nav-link"><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="menu-toggle" aria-label="Open Menu">&#9776;</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!--================================================
+          NEWS POST SECTION
+        ================================================-->
+        <section class="section news-post-section">
+            <div class="container">
+                <div id="post-container" class="post-container">
+                    <!-- Single news post will be injected here -->
+                </div>
+                <div class="back-to-news scroll-reveal">
+                    <a href="news.html" class="btn btn-secondary">&larr; Back to All News</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!--================================================
+      FOOTER
+    ================================================-->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Footer content from index.html -->
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Soroti School of Comprehensive Nursing. All Rights Reserved. | Designed by Hamcodz</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="js/script.min.js"></script>
+
+</body>
+</html>

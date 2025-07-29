@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - H&B Metal Workshop</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap" rel="stylesheet">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+      /* Extra styling for the contact page */
+      .contact-section {
+        background: linear-gradient(120deg, #232946 0%, #1a2238 100%);
+        color: var(--white, #fff);
+        position: relative;
+        overflow: hidden;
+      }
+      .contact-glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.13;
+        z-index: 0;
+        pointer-events: none;
+        animation: aboutGlowMove 18s ease-in-out infinite alternate;
+        transition: opacity 0.3s;
+      }
+      .contact-glow1 {
+        width: 220px; height: 220px;
+        background: radial-gradient(circle, #ffb347 0%, #ff8c00 80%, transparent 100%);
+        top: -60px; left: -80px;
+        animation-delay: 0s;
+      }
+      .contact-glow2 {
+        width: 180px; height: 180px;
+        background: radial-gradient(circle, #ffe6b3 0%, #ffb347 80%, transparent 100%);
+        bottom: -50px; right: -60px;
+        animation-delay: 3s;
+      }
+      .contact-glow3 {
+        width: 120px; height: 120px;
+        background: radial-gradient(circle, #ffb347 0%, #fffbe7 80%, transparent 100%);
+        top: 55%; left: 65%;
+        transform: translate(-50%, -50%);
+        animation-delay: 6s;
+      }
+      .contact-content {
+        position: relative;
+        z-index: 2;
+        background: transparent;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 2.5rem 2rem;
+        text-align: center;
+      }
+      .contact-content h2 {
+        color: var(--accent, #ffb347);
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+        letter-spacing: 1px;
+      }
+      .contact-content p {
+        font-size: 1.15rem;
+        margin-bottom: 1.2rem;
+        color: #f7f7f7;
+      }
+      .contact-details {
+        margin-bottom: 2rem;
+      }
+      .contact-details p {
+        margin: 0.2rem 0;
+        color: #ffe6b3;
+        font-size: 1.08rem;
+        letter-spacing: 0.5px;
+      }
+      .contact-form {
+        background: rgba(26,34,56,0.85);
+        border: 1.5px solid var(--accent, #ffb347);
+        border-radius: 18px;
+        padding: 2rem 1.5rem;
+        box-shadow: 0 4px 24px rgba(26,34,56,0.13);
+        margin: 0 auto 1.5rem auto;
+        max-width: 420px;
+        text-align: left;
+        position: relative;
+        z-index: 2;
+      }
+      .contact-form label {
+        color: var(--accent, #ffb347);
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+        display: block;
+        letter-spacing: 0.5px;
+      }
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 0.7rem 1rem;
+        margin-bottom: 1.1rem;
+        border: 1.5px solid #ffb347;
+        border-radius: 8px;
+        background: #232946;
+        color: #fff;
+        font-size: 1rem;
+        transition: border 0.2s, box-shadow 0.2s;
+      }
+      .contact-form input:focus,
+      .contact-form textarea:focus {
+        border-color: #ff8c00;
+        outline: none;
+        box-shadow: 0 0 0 2px #ffb34733;
+      }
+      .contact-form .btn {
+        width: 100%;
+        margin-top: 0.5rem;
+        font-size: 1.1rem;
+        padding: 0.9rem 0;
+      }
+      @media (max-width: 700px) {
+        .contact-content { padding: 2rem 0.5rem; }
+        .contact-form { padding: 1.2rem 0.5rem; }
+      }
+    </style>
+</head>
+<body>
+    <nav>
+      <ul>
+        <li class="logo"><a href="index.html">H&B</a></li>
+        <li class="nav-link"><a href="about.html">About</a></li>
+        <li class="nav-link"><a href="services.html">Services</a></li>
+        <li class="nav-link"><a href="portfolio.html">Portfolio</a></li>
+        <li class="nav-link"><a href="testimonials.html">Testimonials</a></li>
+        <li class="nav-link"><a href="contact.html">Contact</a></li>
+        <li class="nav-link"><a href="login.html">Login</a></li>
+        <li class="nav-link"><a href="order.html">Order</a></li>
+        <li class="menu-icon">
+          <a onclick="ShowSideBar(event)" href="#">
+            <img src="icons8-menu-50.svg" alt="Menu" width="26" />
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Sidebar for mobile -->
+    <ul class="sidebar">
+      <li>
+        <a onclick="HideSideBar(event)" href="#" class="logo menu-icon">
+          <img src="icons8-close-50.svg" alt="Close" width="26" />
+        </a>
+      </li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="testimonials.html">Testimonials</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="order.html">Order</a></li>
+    </ul>
+
+    <main class="section-padding contact-section" data-aos="fade-up">
+      <div class="contact-glow contact-glow1"></div>
+      <div class="contact-glow contact-glow2"></div>
+      <div class="contact-glow contact-glow3"></div>
+      <div class="contact-content">
+        <h2 data-aos="fade-right">Contact Us</h2>
+        <p data-aos="fade-up" data-aos-delay="150">
+          We’d love to hear from you! Reach out for any inquiries, custom orders, or consultations. Our team is ready to help you with all your metalwork needs.
+        </p>
+        <div class="contact-details" data-aos="fade-up" data-aos-delay="250">
+          <p><strong>Email:</strong> <a href="mailto:hamzaholix@gmail.com" style="color:#ffb347;">hamzaholix@gmail.com</a></p>
+          <p><strong>Phone:</strong> <a href="tel:+256742337382" style="color:#ffb347;">+256 742 337 382</a> / <a href="tel:+256774333181" style="color:#ffb347;">+256 774 333 181</a></p>
+          <p><strong>Location:</strong> Mukono, Uganda</p>
+        </div>
+        <form id="contact-whatsapp-form" class="contact-form" data-aos="zoom-in-up" data-aos-delay="350">
+          <div class="form-group">
+            <label for="whatsapp-name">Your Name:</label>
+            <input type="text" id="whatsapp-name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="whatsapp-email">Your Email:</label>
+            <input type="email" id="whatsapp-email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="whatsapp-message">Your Message:</label>
+            <textarea id="whatsapp-message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send via WhatsApp</button>
+        </form>
+      </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 H&B Metal Workshop. All rights reserved.</p>
+    </footer>
+
+    <script>
+      function ShowSideBar(event) {
+        event.preventDefault();
+        document.querySelector('.sidebar').style.display = 'flex';
+      }
+      function HideSideBar(event) {
+        event.preventDefault();
+        document.querySelector('.sidebar').style.display = 'none';
+      }
+
+      // WhatsApp form handler
+      document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('contact-whatsapp-form');
+        if(form) {
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('whatsapp-name').value;
+            const email = document.getElementById('whatsapp-email').value;
+            const message = document.getElementById('whatsapp-message').value;
+            const phone = "+256742337382";
+            const text = `Hello, my name is ${name} (${email}).%0A${message}`;
+            window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+          });
+        }
+      });
+    </script>
+    <script src="js/script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 900,
+        once: true,
+        easing: "ease-out-cubic",
+      });
+    </script>
+</body>
+</html>

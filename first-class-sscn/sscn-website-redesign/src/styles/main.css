@@ -1,0 +1,126 @@
+/* Main CSS styles for the SSCN website redesign */
+
+/* Importing variables */
+@import './variables.css';
+
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+h1, h2, h3 {
+    color: #2c3e50;
+}
+
+a {
+    text-decoration: none;
+    color: #3498db;
+}
+
+a:hover {
+    color: #2980b9;
+}
+
+/* Header Styles */
+.main-header {
+    background: #34495e;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-link {
+    margin: 0 15px;
+}
+
+/* Hero Section Styles */
+.hero {
+    background: url('../assets/images/hero-bg.jpg') no-repeat center center/cover;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+/* About Section Styles */
+.about-section {
+    padding: 50px 0;
+    background: #fff;
+}
+
+.about-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Programs Section Styles */
+.programs-section {
+    padding: 50px 0;
+    background: #ecf0f1;
+}
+
+.programs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Footer Styles */
+.main-footer {
+    background: #34495e;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #3498db;
+    color: white;
+}
+
+.btn-secondary {
+    background: #2ecc71;
+    color: white;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        flex-direction: column;
+    }
+}
