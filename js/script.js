@@ -1,139 +1,142 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Sidebar and mobile menu functionality
+
+    // Hide preloader once page is loaded
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        window.addEventListener('load', () => {
+            preloader.classList.add('hidden');
+        });
+    }
+
+    // 1. Sticky Header on Scroll
+    const header = document.querySelector('.main-header');
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    }
+
+    // 2. Mobile Navigation Toggle
     const menuToggle = document.querySelector('.menu-toggle');
-    const sidebar = document.querySelector('.sidebar');
-    const closeSidebar = document.querySelector('.close-sidebar');
-    const overlay = document.querySelector('.overlay');
-
-    if (menuToggle && sidebar && closeSidebar && overlay) {
+    const navLinks = document.querySelector('.nav-links');
+    if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => {
-            sidebar.classList.add('active');
-            overlay.classList.add('active');
+            navLinks.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', navLinks.classList.contains('active'));
         });
-
-        const close = () => {
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
-        };
-
-        closeSidebar.addEventListener('click', close);
-        overlay.addEventListener('click', close);
     }
 
-    // Dark mode toggle
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    // 3. Smooth Scroll-Reveal Animations
+    gsap.registerPlugin(ScrollTrigger);
 
-    // Function to apply theme based on isDark boolean
-    const setTheme = (isDark) => {
-        const root = document.documentElement;
-        if (isDark) {
-            root.style.setProperty('--primary-color', '#4dabf7');
-            root.style.setProperty('--primary-color-dark', '#1e88e5');
-            root.style.setProperty('--secondary-color', '#adb5bd');
-            root.style.setProperty('--background-color', '#121212');
-            root.style.setProperty('--surface-color', '#1e1e1e');
-            root.style.setProperty('--text-color', '#e0e0e0');
-            root.style.setProperty('--heading-color', '#ffffff');
-            root.style.setProperty('--border-color', '#333333');
-            root.style.setProperty('--primary-color-rgb', '77, 171, 247');
-        } else {
-            root.style.setProperty('--primary-color', '#007bff');
-            root.style.setProperty('--primary-color-dark', '#0056b3');
-            root.style.setProperty('--secondary-color', '#6c757d');
-            root.style.setProperty('--background-color', '#ffffff');
-            root.style.setProperty('--surface-color', '#f8f9fa');
-            root.style.setProperty('--text-color', '#333333');
-            root.style.setProperty('--heading-color', '#000000');
-            root.style.setProperty('--border-color', '#dee2e6');
-            root.style.setProperty('--primary-color-rgb', '0, 123, 255');
-        }
-        localStorage.setItem('darkMode', isDark ? '1' : '0');
-    };
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+        const tl = gsap.timeline();
+        tl.from(heroContent.querySelector('h1'), { opacity: 0, y: 50, duration: 1, ease: 'power3.out' })
+          .from(heroContent.querySelector('p'), { opacity: 0, y: 30, duration: 0.8, ease: 'power3.out' }, "-=0.7")
+          .from(heroContent.querySelector('.hero-buttons'), { opacity: 0, y: 20, duration: 0.6, ease: 'power3.out' }, "-=0.6")
+          .from(".hero-image", { opacity: 0, scale: 0.9, duration: 1, ease: 'power3.out' }, "-=0.8");
 
-    if (darkModeToggle) {
-        darkModeToggle.addEventListener('click', () => {
-            const isDark = localStorage.getItem('darkMode') !== '1';
-            setTheme(isDark);
+        // Add this for hero parallax effect
+        const hero = document.querySelector('.hero');
+        hero.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const x = (clientX / window.innerWidth) - 0.5;
+            const y = (clientY / window.innerHeight) - 0.5;
+
+            gsap.to(heroContent.querySelector('h1'), {
+                x: -x * 50,
+                y: -y * 30,
+                duration: 0.5,
+                ease: 'power2.out'
+            });
+            gsap.to(heroContent.querySelector('p'), {
+                x: x * 40,
+                y: y * 20,
+                duration: 0.5,
+                ease: 'power2.out'
+            });
+            gsap.to(heroContent.querySelector('.hero-buttons'), {
+                x: -x * 30,
+                y: -y * 15,
+                duration: 0.5,
+                ease: 'power2.out'
+            });
         });
-        // Apply theme on initial load
-        setTheme(localStorage.getItem('darkMode') === '1');
+
+        gsap.to(".hero", {
+            backgroundPosition: "50% 100%",
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
     }
 
-    // Scroll-to-top button
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+        gsap.fromTo(el, 
+            { opacity: 0, y: 50 }, // from state
+            { // to state
+                opacity: 1, 
+                y: 0, 
+                duration: 1, 
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 90%", // Start animation when element is 10% from the bottom of the viewport
+                    toggleActions: "play none none none",
+                }
+            }
+        );
+    });
+
+    // 4. Back to Top Button
     const scrollTopBtn = document.getElementById('scroll-top-btn');
     if (scrollTopBtn) {
         window.addEventListener('scroll', () => {
-            scrollTopBtn.style.display = window.pageYOffset > 300 ? 'block' : 'none';
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
         });
         scrollTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 
-    // Scroll-reveal animations
-    const scrollRevealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                const animationType = entry.target.dataset.animation || 'fade-in-up';
-                entry.target.classList.add(`animate-${animationType}`);
-
-                // Staggered animations for children
-                const staggeredChildren = entry.target.querySelectorAll('[data-stagger]');
-                staggeredChildren.forEach((child, index) => {
-                    child.style.animationDelay = `${index * 0.1}s`; // 100ms delay per item
-                    child.classList.add(`animate-${animationType}`);
-                });
-
-                scrollRevealObserver.unobserve(entry.target); // Only animate once
-            }
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.scroll-reveal').forEach(element => {
-        scrollRevealObserver.observe(element);
-    });
-
-    // Helper function to create skeleton loaders
-    const createSkeletonLoader = (type = 'text', count = 1) => {
-        let html = '';
-        for (let i = 0; i < count; i++) {
-            if (type === 'text') {
-                html += '<div class="skeleton-loader skeleton-text"></div>';
-            } else if (type === 'image') {
-                html += '<div class="skeleton-loader skeleton-image"></div>';
-            } else if (type === 'card') {
-                html += `
-                    <div class="news-card skeleton-loader">
-                        <div class="skeleton-text"></div>
-                        <div class="skeleton-text short"></div>
-                        <div class="skeleton-text"></div>
-                        <div class="skeleton-text short"></div>
-                    </div>
-                `;
-            } else if (type === 'testimonial') {
-                html += `
-                    <div class="testimonial-card skeleton-loader">
-                        <div class="skeleton-image"></div>
-                        <div class="skeleton-text"></div>
-                        <div class="skeleton-text short"></div>
-                    </div>
-                `;
-            }
-        }
-        return html;
-    };
-
-    // News Page Functionality
+    // 5. Dynamic News Loading (News & Single Post Pages)
     const newsContainer = document.getElementById('news-container');
+    const postContainer = document.getElementById('post-container');
     const paginationContainer = document.getElementById('pagination-container');
     const newsSearchInput = document.getElementById('news-search');
-    let allPosts = []; // Store all posts for filtering
+    const recentPostsSidebar = document.getElementById('recent-posts-sidebar');
 
+    let allPosts = [];
+    let filteredPosts = [];
+    const postsPerPage = 6;
+
+    const fetchNews = async () => {
+        try {
+            const response = await fetch('data/news.json');
+            if (!response.ok) throw new Error('News data not found.');
+            const data = await response.json();
+            return data.sort((a, b) => new Date(b.date) - new Date(a.date));
+        } catch (error) {
+            console.error('Error fetching news:', error);
+            return [];
+        }
+    };
+
+    // If on the main News page
     if (newsContainer) {
-        const postsPerPage = 5;
-        let filteredPosts = [];
-
         const renderPosts = (page = 1) => {
             newsContainer.innerHTML = '';
             const start = (page - 1) * postsPerPage;
@@ -141,101 +144,180 @@ document.addEventListener('DOMContentLoaded', () => {
             const paginatedPosts = filteredPosts.slice(start, end);
 
             if (paginatedPosts.length === 0) {
-                newsContainer.innerHTML = '<p>No news posts found matching your search.</p>';
-                paginationContainer.innerHTML = '';
+                newsContainer.innerHTML = '<p class="no-results">No news posts found.</p>';
                 return;
             }
 
             paginatedPosts.forEach(post => {
-                const postElement = document.createElement('div');
-                postElement.classList.add('news-card');
+                const postElement = document.createElement('a');
+                postElement.href = `news-post.html?id=${post.id}`;
+                postElement.className = 'news-card';
                 postElement.innerHTML = `
-                    <h2>${post.title}</h2>
-                    <p class="post-meta">By ${post.author} on ${new Date(post.date).toLocaleDateString()}</p>
-                    <p>${post.summary}</p>
-                    <a href="news-post.html?id=${post.id}" class="btn btn-primary">Read More</a>
+                    <div class="news-card-image">
+                        <img src="${post.image || 'images/default-news.webp'}" alt="${post.title}">
+                    </div>
+                    <div class="news-card-content">
+                        <span class="news-card-date">${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                        <h3>${post.title}</h3>
+                        <p>${post.summary}</p>
+                        <span class="read-more">Read More &rarr;</span>
+                    </div>
                 `;
                 newsContainer.appendChild(postElement);
             });
+            // Re-observe newly added elements
+            document.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe(el));
         };
 
         const renderPagination = () => {
+            if (!paginationContainer) return;
             paginationContainer.innerHTML = '';
             const pageCount = Math.ceil(filteredPosts.length / postsPerPage);
+            if (pageCount <= 1) return;
+
             for (let i = 1; i <= pageCount; i++) {
                 const link = document.createElement('a');
-                link.href = `?page=${i}`;
+                link.href = `#page-${i}`;
                 link.innerText = i;
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     renderPosts(i);
-                    window.history.pushState({page: i}, `Page ${i}`, `?page=${i}`);
+                    // Optionally update URL without reloading
+                    // window.history.pushState({page: i}, `Page ${i}`, `?page=${i}`);
                 });
                 paginationContainer.appendChild(link);
             }
         };
 
-        const filterPosts = () => {
+        const handleFiltering = () => {
             const searchTerm = newsSearchInput.value.toLowerCase();
-            filteredPosts = allPosts.filter(post => 
+            filteredPosts = allPosts.filter(post =>
                 post.title.toLowerCase().includes(searchTerm) ||
-                post.summary.toLowerCase().includes(searchTerm) ||
-                post.content.toLowerCase().includes(searchTerm)
+                post.summary.toLowerCase().includes(searchTerm)
             );
-            renderPosts(1); // Reset to first page on search
+            renderPosts(1);
             renderPagination();
         };
 
-        newsSearchInput.addEventListener('input', filterPosts);
-
-        // Display skeletons while loading
-        newsContainer.innerHTML = createSkeletonLoader('card', postsPerPage);
-
-        fetch('data/news.json')
-            .then(response => response.json())
-            .then(data => {
-                allPosts = data.sort((a, b) => new Date(b.date) - new Date(a.date));
-                filteredPosts = [...allPosts]; // Initialize filtered posts with all posts
-                const urlParams = new URLSearchParams(window.location.search);
-                const page = parseInt(urlParams.get('page')) || 1;
-                renderPosts(page);
-                renderPagination();
+        const renderRecentPosts = (posts) => {
+            if (!recentPostsSidebar) return;
+            recentPostsSidebar.innerHTML = '';
+            posts.slice(0, 5).forEach(post => { // Display top 5 recent posts
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<a href="news-post.html?id=${post.id}">${post.title}</a>`;
+                recentPostsSidebar.appendChild(listItem);
             });
+        };
+
+        const initNewsPage = async () => {
+            allPosts = await fetchNews();
+            filteredPosts = [...allPosts];
+            if (newsSearchInput) {
+                newsSearchInput.addEventListener('input', handleFiltering);
+            }
+            renderPosts(1);
+            renderPagination();
+            renderRecentPosts(allPosts);
+        };
+
+        initNewsPage();
     }
 
-    // Single News Post Functionality
-    const postContainer = document.getElementById('post-container');
+    // If on a Single Post page
     if (postContainer) {
-        const urlParams = new URLSearchParams(window.location.search);
-        const postId = parseInt(urlParams.get('id'));
+        const initPostPage = async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const postId = parseInt(urlParams.get('id'));
+            if (!postId) {
+                postContainer.innerHTML = '<p>Invalid post ID.</p>';
+                return;
+            }
 
-        // Display skeletons while loading
-        postContainer.innerHTML = `
-            <div class="skeleton-loader skeleton-text" style="height: 40px; width: 80%;"></div>
-            <div class="skeleton-loader skeleton-text short" style="width: 40%;"></div>
-            <div class="skeleton-loader skeleton-text"></div>
-            <div class="skeleton-loader skeleton-text"></div>
-            <div class="skeleton-loader skeleton-text short" style="width: 70%;"></div>
-        `;
+            const posts = await fetchNews();
+            const post = posts.find(p => p.id === postId);
 
-        fetch('data/news.json')
-            .then(response => response.json())
-            .then(data => {
-                const post = data.find(p => p.id === postId);
-                if (post) {
-                    document.title = `SSCN | ${post.title}`;
-                    postContainer.innerHTML = `
+            if (post) {
+                document.title = `${post.title} | SSCN`;
+                postContainer.innerHTML = `
+                    <div class="post-header">
                         <h1>${post.title}</h1>
                         <p class="post-meta">By ${post.author} on ${new Date(post.date).toLocaleDateString()}</p>
-                        <div class="post-content">${post.content}</div>
-                    `;
-                } else {
-                    postContainer.innerHTML = `<p>Post not found.</p>`;
+                    </div>
+                    <img src="${post.image || 'images/default-news.webp'}" alt="${post.title}" class="post-banner-image">
+                    <div class="post-content">${post.content}</div>
+                `;
+
+                // Read Progress Bar Logic
+                const progressBar = document.getElementById('read-progress-bar');
+                if (progressBar) {
+                    window.addEventListener('scroll', () => {
+                        const contentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                        const scrollPercentage = (window.scrollY / contentHeight) * 100;
+                        progressBar.style.width = `${scrollPercentage}%`;
+                    });
                 }
+
+            } else {
+                postContainer.innerHTML = '<p>Post not found.</p>';
+            }
+        };
+
+        initPostPage();
+    }
+
+    // 6. FAQ Accordion
+    const faqContainer = document.getElementById('faq-container');
+    if (faqContainer) {
+        fetch('data/faq.json')
+            .then(res => res.json())
+            .then(faqs => {
+                faqs.forEach(faq => {
+                    const item = document.createElement('div');
+                    item.className = 'faq-item';
+                    item.innerHTML = `
+                        <button class="faq-question" aria-expanded="false">
+                            <span>${faq.question}</span>
+                            <span class="faq-icon"></span>
+                        </button>
+                        <div class="faq-answer" hidden>${faq.answer}</div>
+                    `;
+                    faqContainer.appendChild(item);
+                });
+
+                faqContainer.addEventListener('click', (e) => {
+                    const question = e.target.closest('.faq-question');
+                    if (question) {
+                        const answer = question.nextElementSibling;
+                        const isExpanded = question.getAttribute('aria-expanded') === 'true';
+                        question.setAttribute('aria-expanded', !isExpanded);
+                        answer.hidden = isExpanded;
+                    }
+                });
             });
     }
 
-    // Toast Notification Functionality
+    // 7. Testimonials Loading
+    const testimonialsContainer = document.getElementById('testimonials-container');
+    if (testimonialsContainer) {
+        fetch('data/testimonials.json')
+            .then(res => res.json())
+            .then(testimonials => {
+                testimonialsContainer.innerHTML = '';
+                testimonials.forEach(testimonial => {
+                    const card = document.createElement('div');
+                    card.className = 'testimonial-card scroll-reveal';
+                    card.innerHTML = `
+                        <img src="${testimonial.image}" alt="${testimonial.name}">
+                        <blockquote>"${testimonial.quote}"</blockquote>
+                        <cite>- ${testimonial.name}</cite>
+                    `;
+                    testimonialsContainer.appendChild(card);
+                });
+                document.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe(el));
+            });
+    }
+
+    // 8. News Toast Notification Functionality
     const newsToast = document.getElementById('news-toast');
     if (newsToast && !window.location.pathname.includes('news')) { // Don't show on news pages
         setTimeout(() => {
@@ -246,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const latestPost = data.sort((a, b) => new Date(b.date) - new Date(a.date))[0];
                         if (latestPost) {
                             newsToast.innerHTML = `
-                                <button class="close-toast">×</button>
+                                <button class="close-toast">&times;</button>
                                 <h4>Latest News</h4>
                                 <p>${latestPost.title}</p>
                                 <a href="news-post.html?id=${latestPost.id}" class="btn btn-primary btn-sm">Read More</a>
@@ -269,53 +351,55 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 15000); // 15 seconds delay
     }
 
-    // Testimonials Functionality
-    const testimonialsContainer = document.getElementById('testimonials-container');
-    if (testimonialsContainer) {
-        // Display skeletons while loading
-        testimonialsContainer.innerHTML = createSkeletonLoader('testimonial', 3); // Show 3 testimonial skeletons
+    // 10. Gallery Lightbox
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('lightbox-modal');
+    const lightboxImg = document.getElementById('lightbox-image');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const closeBtn = document.querySelector('.close-modal');
+    const prevBtn = document.querySelector('.prev-img');
+    const nextBtn = document.querySelector('.next-img');
 
-        fetch('data/testimonials.json')
-            .then(response => response.json())
-            .then(data => {
-                testimonialsContainer.innerHTML = ''; // Clear skeletons
-                data.forEach(testimonial => {
-                    const testimonialElement = document.createElement('div');
-                    testimonialElement.classList.add('testimonial-card');
-                    testimonialElement.innerHTML = `
-                        <img src="${testimonial.image}" alt="${testimonial.name}" loading="lazy">
-                        <p>"${testimonial.quote}"</p>
-                        <h4>- ${testimonial.name}</h4>
-                    `;
-                    testimonialsContainer.appendChild(testimonialElement);
-                });
-            });
+    let currentImageIndex;
+    const images = Array.from(galleryItems).map(item => ({
+        src: item.dataset.src,
+        title: item.dataset.title,
+        description: item.dataset.description
+    }));
+
+    function showImage(index) {
+        if (index < 0 || index >= images.length) return;
+        currentImageIndex = index;
+        lightboxImg.src = images[index].src;
+        lightboxCaption.innerHTML = `<h3>${images[index].title}</h3><p>${images[index].description}</p>`;
     }
 
-    // FAQ Functionality
-    const faqContainer = document.getElementById('faq-container');
-    if (faqContainer) {
-        fetch('data/faq.json')
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(faq => {
-                    const faqItem = document.createElement('div');
-                    faqItem.classList.add('faq-item');
-                    faqItem.innerHTML = `
-                        <div class="faq-question">${faq.question}</div>
-                        <div class="faq-answer">${faq.answer}</div>
-                    `;
-                    faqContainer.appendChild(faqItem);
-                });
-
-                // Add toggle functionality
-                faqContainer.querySelectorAll('.faq-question').forEach(question => {
-                    question.addEventListener('click', () => {
-                        const answer = question.nextElementSibling;
-                        question.classList.toggle('active');
-                        answer.classList.toggle('active');
-                    });
-                });
+    if (galleryItems.length > 0 && lightbox) {
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                lightbox.classList.add('active');
+                showImage(index);
             });
+        });
+
+        closeBtn.addEventListener('click', () => lightbox.classList.remove('active'));
+        prevBtn.addEventListener('click', () => showImage(currentImageIndex - 1));
+        nextBtn.addEventListener('click', () => showImage(currentImageIndex + 1));
+
+        // Close on background click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'ArrowRight') nextBtn.click();
+                if (e.key === 'ArrowLeft') prevBtn.click();
+                if (e.key === 'Escape') closeBtn.click();
+            }
+        });
     }
 });

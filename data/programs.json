@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "title": "Diploma in Nursing",
+        "category": "Diploma",
+        "summary": "A comprehensive program blending rigorous theory with practical clinical experience for a rewarding healthcare career.",
+        "image": "images/programs/nursing.jpg",
+        "details_link": "programs.html#nursing"
+    },
+    {
+        "id": 2,
+        "title": "Diploma in Midwifery",
+        "category": "Diploma",
+        "summary": "Specialized training in maternal and child health, empowering students to become skilled and compassionate midwives.",
+        "image": "images/programs/midwifery.jpg",
+        "details_link": "programs.html#midwifery"
+    },
+    {
+        "id": 3,
+        "title": "Diploma in Nursing (Extension)",
+        "category": "Extension",
+        "summary": "An extension program for practicing nurses to upgrade their qualifications and enhance their clinical expertise.",
+        "image": "images/programs/nursing_extension.jpg",
+        "details_link": "programs.html#nursing-extension"
+    },
+    {
+        "id": 4,
+        "title": "Diploma in Midwifery (Extension)",
+        "category": "Extension",
+        "summary": "Upgrade your midwifery qualifications with our extension program focused on advanced practices and leadership.",
+        "image": "images/programs/midwifery_extension.jpg",
+        "details_link": "programs.html#midwifery-extension"
+    },
+    {
+        "id": 5,
+        "title": "Diploma in Nursing (E-Learning)",
+        "category": "E-Learning",
+        "summary": "Flexible online learning for the theoretical components of our Diploma in Nursing, ideal for working professionals.",
+        "image": "images/programs/elearning_nursing.jpg",
+        "details_link": "programs.html#nursing-elearning"
+    },
+    {
+        "id": 6,
+        "title": "Diploma in Midwifery (E-Learning)",
+        "category": "E-Learning",
+        "summary": "A flexible online program delivering our expert midwifery curriculum for students seeking remote learning options.",
+        "image": "images/programs/elearning_midwifery.webp",
+        "details_link": "programs.html#midwifery-elearning"
+    }
+]
