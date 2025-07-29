@@ -424,5 +424,5 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Call the function to prompt users
-    promptOneSignal();
+    // promptOneSignal();
 });
