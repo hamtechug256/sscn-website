@@ -402,4 +402,27 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // 11. OneSignal Subscription Prompt
+    const promptOneSignal = () => {
+        // Check if the prompt has already been shown in this session
+        if (sessionStorage.getItem('oneSignalPromptShown') === 'true') {
+            return;
+        }
+
+        OneSignalDeferred.push(function(OneSignal) {
+            OneSignal.isPushNotificationsEnabled(function(isEnabled) {
+                if (!isEnabled) {
+                    // Show the slide prompt
+                    OneSignal.showSlidedownPrompt();
+                }
+            });
+        });
+
+        // Mark the prompt as shown for this session
+        sessionStorage.setItem('oneSignalPromptShown', 'true');
+    };
+
+    // Call the function to prompt users
+    promptOneSignal();
 });
