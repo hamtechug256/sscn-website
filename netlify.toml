@@ -1,20 +1,13 @@
 # Netlify Configuration for SSCN Website
-# This ensures smooth deployment and preserves SEO
 
 [build]
-  command = """
-    npx prisma generate &&
-    npx prisma db push --accept-data-loss &&
-    npx prisma db seed &&
-    npm run build
-  """
+  command = "chmod +x build.sh && ./build.sh"
   publish = ".next"
 
 [build.environment]
   NODE_VERSION = "20"
-  DATABASE_URL = "file:./db/production.db"
 
-# Next.js Runtime Plugin (required for Next.js 16)
+# Next.js Runtime Plugin
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
@@ -27,7 +20,7 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
-# Cache static assets for better performance
+# Cache static assets
 [[headers]]
   for = "/images/*"
   [headers.values]
