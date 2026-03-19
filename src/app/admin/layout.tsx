@@ -1,11 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import { useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import { Toaster } from 'react-hot-toast'
+import { Toaster, toast } from 'react-hot-toast'
 import { 
   LayoutDashboard, 
   Newspaper, 
@@ -17,19 +17,19 @@ import {
   MessageSquare,
   Megaphone,
   GraduationCap,
-  BookOpen,
   Menu,
   X,
   ExternalLink,
   Bell,
   HelpCircle,
-  ChevronLeft,
-  Sliders
+  LogOut,
+  User,
+  Loader2
 } from 'lucide-react'
 
 const navigation = [
   { name: 'Dashboard', href: '/admin', icon: LayoutDashboard, description: 'Overview & statistics' },
-  { name: 'Hero Slides', href: '/admin/hero-slides', icon: Sliders, description: 'Homepage carousel' },
+  { name: 'Hero Slides', href: '/admin/hero-slides', icon: Image, description: 'Homepage carousel' },
   { name: 'News & Updates', href: '/admin/news', icon: Newspaper, description: 'Manage news articles' },
   { name: 'Events', href: '/admin/events', icon: Calendar, description: 'Manage events calendar' },
   { name: 'Announcements', href: '/admin/announcements', icon: Megaphone, description: 'Important notices' },
@@ -41,13 +41,79 @@ const navigation = [
   { name: 'Settings', href: '/admin/settings', icon: Settings, description: 'Site configuration' },
 ]
 
+interface UserData {
+  id: string
+  email: string
+  name: string
+  role: string
+  avatar?: string
+}
+
 export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   const pathname = usePathname()
+  const router = useRouter()
   const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [user, setUser] = useState<UserData | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  // Check authentication
+  useEffect(() => {
+    // Skip auth check for login page
+    if (pathname === '/admin/login') {
+      setLoading(false)
+      return
+    }
+
+    // Check for stored user data
+    const storedUser = localStorage.getItem('adminUser')
+    
+    if (!storedUser) {
+      router.push('/admin/login')
+      return
+    }
+
+    try {
+      const userData = JSON.parse(storedUser)
+      setUser(userData)
+    } catch {
+      localStorage.removeItem('adminUser')
+      router.push('/admin/login')
+    } finally {
+      setLoading(false)
+    }
+  }, [pathname, router])
+
+  const handleLogout = () => {
+    localStorage.removeItem('adminUser')
+    toast.success('Logged out successfully')
+    router.push('/admin/login')
+  }
+
+  // Don't wrap login page with admin layout
+  if (pathname === '/admin/login') {
+    return <>{children}</>
+  }
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <Loader2 className="w-8 h-8 animate-spin text-sky-500 mx-auto mb-4" />
+          <p className="text-gray-500">Loading...</p>
+        </div>
+      </div>
+    )
+  }
+
+  // Redirect if not authenticated
+  if (!user) {
+    return null
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -196,14 +262,27 @@ export default function AdminLayout({
               <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
             </Button>
             <div className="flex items-center gap-2 pl-3 border-l border-gray-200">
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center text-white text-sm font-medium shadow-sm">
-                A
+              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center text-white text-sm font-medium shadow-sm overflow-hidden">
+                {user.avatar ? (
+                  <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
+                ) : (
+                  user.name.charAt(0).toUpperCase()
+                )}
               </div>
               <div className="hidden sm:block">
-                <p className="text-sm font-medium text-gray-700">Admin</p>
-                <p className="text-xs text-gray-400">Administrator</p>
+                <p className="text-sm font-medium text-gray-700">{user.name}</p>
+                <p className="text-xs text-gray-400 capitalize">{user.role}</p>
               </div>
             </div>
+            <Button 
+              variant="ghost" 
+              size="icon"
+              onClick={handleLogout}
+              className="hover:bg-red-50 hover:text-red-600"
+              title="Logout"
+            >
+              <LogOut className="w-5 h-5" />
+            </Button>
           </div>
         </header>
 
