@@ -45,10 +45,16 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
       { url: "/icon.png", type: "image/png", sizes: "512x512" },
-      { url: "/favicon.ico", sizes: "any" },
     ],
-    apple: [{ url: "/apple-touch-icon.png", type: "image/png", sizes: "512x512" }],
+    apple: [
+      { url: "/apple-touch-icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    other: [
+      { rel: "icon", url: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+      { rel: "icon", url: "/android-chrome-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
   },
   openGraph: {
     title: "SSCN | Nursing & Midwifery School in Soroti, Uganda",
