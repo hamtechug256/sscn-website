@@ -160,15 +160,6 @@ export default function AdminLoginPage() {
               </Button>
             </form>
 
-            {/* Demo Credentials */}
-            <div className="mt-6 p-4 bg-sky-50 rounded-lg border border-sky-100">
-              <p className="text-xs text-sky-700 font-medium mb-2">Demo Credentials:</p>
-              <div className="text-xs text-sky-600 space-y-1">
-                <p><span className="font-medium">Email:</span> admin@sscn.ac.ug</p>
-                <p><span className="font-medium">Password:</span> admin123</p>
-              </div>
-            </div>
-
             {/* Help Link */}
             <p className="text-center text-sm text-gray-500 mt-6">
               Forgot your password?{' '}
