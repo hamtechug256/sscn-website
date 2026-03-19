@@ -19,6 +19,9 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 
+// Force dynamic rendering for Netlify compatibility
+export const dynamic = 'force-dynamic'
+
 async function getSettings() {
   const settings = await db.setting.findMany()
   const map: Record<string, string> = {}
