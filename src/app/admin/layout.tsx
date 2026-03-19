@@ -84,8 +84,12 @@ export default function AdminLayout({
         {/* Logo */}
         <div className="h-16 flex items-center justify-between px-4 border-b border-gray-200 bg-gradient-to-r from-sky-500 to-blue-600">
           <Link href="/admin" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center">
-              <GraduationCap className="w-5 h-5 text-sky-600" />
+            <div className="w-10 h-10 rounded-lg bg-white shadow-md overflow-hidden flex items-center justify-center">
+              <img 
+                src="/images/school-badge.png" 
+                alt="SSCN Badge" 
+                className="w-full h-full object-contain"
+              />
             </div>
             <div>
               <span className="font-bold text-white text-sm">SSCN Admin</span>

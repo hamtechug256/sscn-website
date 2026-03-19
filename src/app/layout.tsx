@@ -44,7 +44,11 @@ export const metadata: Metadata = {
     google: "QR1HBf3n-p82L2s8USU-kpiWPTDgnhcuwAyfjbOwXe8",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", type: "image/png", sizes: "512x512" }],
   },
   openGraph: {
     title: "SSCN | Nursing & Midwifery School in Soroti, Uganda",
@@ -102,7 +106,7 @@ export default function RootLayout({
               name: "Soroti School of Comprehensive Nursing",
               alternateName: "SSCN",
               url: "https://sscnug.netlify.app",
-              logo: "https://sscnug.netlify.app/images/logo.png",
+              logo: "https://sscnug.netlify.app/images/school-badge.png",
               description: "Start your nursing or midwifery career at SSCN in Soroti, Uganda. We offer diploma programs with modern labs, expert faculty, and high graduate success.",
               contactPoint: {
                 "@type": "ContactPoint",

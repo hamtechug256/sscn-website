@@ -102,6 +102,16 @@ export function AboutContent() {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
+            {/* School Badge */}
+            <div className="flex justify-center mb-6">
+              <div className="w-24 h-24 rounded-2xl bg-white shadow-2xl overflow-hidden flex items-center justify-center border-4 border-white">
+                <img 
+                  src="/images/school-badge.png" 
+                  alt="SSCN Official Badge" 
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </div>
             <Badge variant="outline" className="text-sky-600 border-sky-200 px-4 py-1">About Us</Badge>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">
               About <span className="gradient-text">Soroti School of Comprehensive Nursing</span>

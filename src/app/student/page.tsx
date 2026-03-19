@@ -58,8 +58,12 @@ export default function StudentPortalPage() {
             {!isLoggedIn ? (
               <Card className="max-w-md mx-auto">
                 <CardHeader className="text-center">
-                  <div className="w-16 h-16 rounded-full bg-violet-100 flex items-center justify-center mx-auto mb-4">
-                    <GraduationCap className="w-8 h-8 text-violet-600" />
+                  <div className="w-20 h-20 rounded-2xl bg-white shadow-xl mx-auto mb-4 overflow-hidden flex items-center justify-center border border-gray-100">
+                    <img 
+                      src="/images/school-badge.png" 
+                      alt="SSCN Badge" 
+                      className="w-full h-full object-contain"
+                    />
                   </div>
                   <CardTitle>Student Login</CardTitle>
                 </CardHeader>

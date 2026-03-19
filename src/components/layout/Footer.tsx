@@ -33,8 +33,12 @@ export function Footer() {
           {/* Brand Column */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center text-white font-bold text-xl shadow-lg">
-                S
+              <div className="w-14 h-14 rounded-xl bg-white shadow-lg overflow-hidden flex items-center justify-center">
+                <img 
+                  src="/images/school-badge.png" 
+                  alt="SSCN Badge" 
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
                 <span className="font-bold text-2xl">SSCN</span>

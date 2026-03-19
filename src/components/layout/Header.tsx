@@ -91,8 +91,12 @@ export function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group" onClick={() => setIsMenuOpen(false)}>
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:shadow-xl transition-shadow">
-              S
+            <div className="w-12 h-12 rounded-xl bg-white shadow-lg group-hover:shadow-xl transition-shadow overflow-hidden flex items-center justify-center">
+              <img 
+                src="/images/school-badge.png" 
+                alt="SSCN Badge" 
+                className="w-full h-full object-contain"
+              />
             </div>
             <div className="hidden sm:block">
               <span className="font-bold text-xl gradient-text">SSCN</span>
