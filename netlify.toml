@@ -57,20 +57,3 @@
   for = "/robots.txt"
   [headers.values]
     Cache-Control = "public, max-age=86400"
-
-# Redirects for SEO (in case of URL changes)
-# These ensure old URLs redirect to new ones with 301 (permanent)
-
-# Ensure trailing slashes are handled consistently
-# [[redirects]]
-#   from = "/*/"
-#   to = "/:splat"
-#   status = 301
-#   force = false
-
-# Redirect www to non-www (if needed)
-# [[redirects]]
-#   from = "https://www.sscnug.netlify.app/*"
-#   to = "https://sscnug.netlify.app/:splat"
-#   status = 301
-#   force = true

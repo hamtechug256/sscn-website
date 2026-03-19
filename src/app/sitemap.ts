@@ -1,19 +1,13 @@
 import { MetadataRoute } from 'next'
-import { db } from '@/lib/db'
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+// Dynamic sitemap - generated at request time, not build time
+// This works better with Netlify serverless functions
+
+export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://sscnug.netlify.app'
 
-  // Fetch dynamic content
-  const [news, events, programs, gallery] = await Promise.all([
-    db.news.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
-    db.event.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
-    db.program.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
-    db.galleryAlbum.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
-  ])
-
-  // Static pages
-  const staticPages: MetadataRoute.Sitemap = [
+  // Static pages only - dynamic pages are handled by Next.js automatically
+  return [
     {
       url: baseUrl,
       lastModified: new Date(),
@@ -105,38 +99,4 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.5,
     },
   ]
-
-  // Dynamic news pages
-  const newsPages: MetadataRoute.Sitemap = news.map((item) => ({
-    url: `${baseUrl}/news/${item.slug}`,
-    lastModified: item.updatedAt,
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }))
-
-  // Dynamic event pages
-  const eventPages: MetadataRoute.Sitemap = events.map((item) => ({
-    url: `${baseUrl}/events/${item.slug}`,
-    lastModified: item.updatedAt,
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }))
-
-  // Dynamic program pages
-  const programPages: MetadataRoute.Sitemap = programs.map((item) => ({
-    url: `${baseUrl}/programs/${item.slug}`,
-    lastModified: item.updatedAt,
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }))
-
-  // Dynamic gallery pages
-  const galleryPages: MetadataRoute.Sitemap = gallery.map((item) => ({
-    url: `${baseUrl}/gallery/${item.slug}`,
-    lastModified: item.updatedAt,
-    changeFrequency: 'monthly' as const,
-    priority: 0.5,
-  }))
-
-  return [...staticPages, ...newsPages, ...eventPages, ...programPages, ...galleryPages]
 }

@@ -6,6 +6,9 @@ import { Button } from '@/components/ui/button'
 import { Header, Footer, WhatsAppButton } from '@/components/layout'
 import { Calendar, ArrowRight, Clock, User } from 'lucide-react'
 
+// Force dynamic rendering for Netlify compatibility
+export const dynamic = 'force-dynamic'
+
 async function getPublishedNews() {
   return db.news.findMany({
     where: { published: true },

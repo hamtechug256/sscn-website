@@ -4,6 +4,9 @@ import { Badge } from '@/components/ui/badge'
 import { Header, Footer, WhatsAppButton } from '@/components/layout'
 import { User, Mail, Phone, BookOpen } from 'lucide-react'
 
+// Force dynamic rendering for Netlify compatibility
+export const dynamic = 'force-dynamic'
+
 async function getActiveFaculty() {
   return db.faculty.findMany({
     where: { active: true },

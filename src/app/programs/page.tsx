@@ -18,6 +18,9 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 
+// Force dynamic rendering for Netlify compatibility
+export const dynamic = 'force-dynamic'
+
 const programs = [
   {
     title: "Diploma in Nursing",

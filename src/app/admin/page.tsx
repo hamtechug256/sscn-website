@@ -14,6 +14,9 @@ import {
   CheckCircle2
 } from 'lucide-react'
 
+// Force dynamic rendering for Netlify compatibility
+export const dynamic = 'force-dynamic'
+
 async function getStats() {
   const [
     newsCount,

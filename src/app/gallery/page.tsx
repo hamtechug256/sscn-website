@@ -5,6 +5,9 @@ import { Badge } from '@/components/ui/badge'
 import { Header, Footer, WhatsAppButton } from '@/components/layout'
 import { Image, Images, Calendar } from 'lucide-react'
 
+// Force dynamic rendering for Netlify compatibility
+export const dynamic = 'force-dynamic'
+
 async function getPublishedGallery() {
   return db.galleryAlbum.findMany({
     where: { published: true },

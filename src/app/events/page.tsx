@@ -5,6 +5,9 @@ import { Badge } from '@/components/ui/badge'
 import { Header, Footer, WhatsAppButton } from '@/components/layout'
 import { Calendar, MapPin, Clock, ArrowRight } from 'lucide-react'
 
+// Force dynamic rendering for Netlify compatibility
+export const dynamic = 'force-dynamic'
+
 async function getPublishedEvents() {
   const now = new Date()
   const upcoming = db.event.findMany({

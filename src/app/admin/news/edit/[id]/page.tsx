@@ -1,4 +1,7 @@
 import { db } from '@/lib/db'
+
+// Force dynamic rendering for Netlify compatibility
+export const dynamic = 'force-dynamic'
 import { notFound } from 'next/navigation'
 import { NewsForm } from '@/components/admin/NewsForm'
 

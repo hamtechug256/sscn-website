@@ -5,6 +5,9 @@ import { Badge } from '@/components/ui/badge'
 import { Header, Footer, WhatsAppButton } from '@/components/layout'
 import { Download, FileText, File } from 'lucide-react'
 
+// Force dynamic rendering for Netlify compatibility
+export const dynamic = 'force-dynamic'
+
 async function getPublishedDownloads() {
   return db.download.findMany({
     where: { published: true },
