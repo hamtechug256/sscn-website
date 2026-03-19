@@ -23,11 +23,13 @@ import {
   ExternalLink,
   Bell,
   HelpCircle,
-  ChevronLeft
+  ChevronLeft,
+  Sliders
 } from 'lucide-react'
 
 const navigation = [
   { name: 'Dashboard', href: '/admin', icon: LayoutDashboard, description: 'Overview & statistics' },
+  { name: 'Hero Slides', href: '/admin/hero-slides', icon: Sliders, description: 'Homepage carousel' },
   { name: 'News & Updates', href: '/admin/news', icon: Newspaper, description: 'Manage news articles' },
   { name: 'Events', href: '/admin/events', icon: Calendar, description: 'Manage events calendar' },
   { name: 'Announcements', href: '/admin/announcements', icon: Megaphone, description: 'Important notices' },

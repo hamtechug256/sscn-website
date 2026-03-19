@@ -214,6 +214,24 @@ model Setting {
 }
 
 // ============================================
+// HERO CAROUSEL / SLIDES
+// ============================================
+
+model HeroSlide {
+  id        String   @id @default(cuid())
+  title     String
+  subtitle  String?
+  badge     String?
+  image     String
+  link      String?  // URL to navigate to when clicked
+  buttonText String? // Text for CTA button
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ============================================
 // ALUMNI
 // ============================================
 
