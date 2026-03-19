@@ -1,0 +1,322 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// USER MANAGEMENT
+// ============================================
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("admin") // admin, staff, student
+  avatar    String?
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  news      News[]
+  contacts  Contact[]
+}
+
+// ============================================
+// NEWS & ANNOUNCEMENTS
+// ============================================
+
+model News {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  content     String   // Rich text/HTML content
+  excerpt     String?  // Short summary
+  image       String?  // Featured image URL
+  category    String   @default("general") // general, admission, event, achievement
+  featured    Boolean  @default(false)
+  published   Boolean  @default(false)
+  authorId    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  author      User?    @relation(fields: [authorId], references: [id])
+}
+
+model Announcement {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  priority  String   @default("normal") // urgent, high, normal
+  active    Boolean  @default(true)
+  startDate DateTime?
+  endDate   DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ============================================
+// EVENTS CALENDAR
+// ============================================
+
+model Event {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String?
+  content     String?  // Full details
+  date        DateTime
+  endDate     DateTime?
+  time        String?
+  location    String?
+  image       String?
+  category    String   @default("general") // academic, social, ceremony, workshop
+  featured    Boolean  @default(false)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ============================================
+// GALLERY & MEDIA
+// ============================================
+
+model GalleryAlbum {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String?
+  coverImage  String?
+  category    String   @default("general") // campus, events, graduation, clinical
+  featured    Boolean  @default(false)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  images      GalleryImage[]
+}
+
+model GalleryImage {
+  id        String   @id @default(cuid())
+  albumId   String
+  url       String
+  caption   String?
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  
+  album     GalleryAlbum @relation(fields: [albumId], references: [id], onDelete: Cascade)
+}
+
+// ============================================
+// FACULTY & STAFF
+// ============================================
+
+model Faculty {
+  id          String   @id @default(cuid())
+  name        String
+  title       String   // e.g., "Principal", "Senior Tutor", "Lecturer"
+  department  String?  // e.g., "Nursing", "Midwifery", "Administration"
+  bio         String?
+  image       String?
+  email       String?
+  phone       String?
+  qualifications String? // JSON array of qualifications
+  specializations String? // JSON array of specializations
+  order       Int      @default(0) // Display order
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ============================================
+// DOWNLOADS & RESOURCES
+// ============================================
+
+model Download {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  file        String   // File URL/path
+  fileType    String?  // pdf, doc, xls, etc.
+  fileSize    Int?     // in bytes
+  category    String   @default("general") // forms, prospectus, past-papers, policies
+  downloads   Int      @default(0)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ============================================
+// PROGRAMS (Enhanced)
+// ============================================
+
+model Program {
+  id              String   @id @default(cuid())
+  name            String
+  slug            String   @unique
+  code            String?  // e.g., "DN", "DM"
+  level           String   @default("diploma") // certificate, diploma, degree
+  duration        String?
+  durationYears   Float?
+  description     String?
+  requirements    String? // JSON array of requirements
+  careerPaths     String? // JSON array of career paths
+  image           String?
+  features        String? // JSON array of features
+  intake          String? // e.g., "January, July"
+  mode            String? // e.g., "Full-time", "Part-time", "E-Learning"
+  fees            String?
+  order           Int      @default(0)
+  featured        Boolean  @default(false)
+  published       Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// ============================================
+// CONTACT & INQUIRIES
+// ============================================
+
+model Contact {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String
+  message   String
+  status    String   @default("unread") // unread, read, replied
+  repliedBy String?
+  reply     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  repliedByUser User? @relation(fields: [repliedBy], references: [id])
+}
+
+// ============================================
+// SITE SETTINGS
+// ============================================
+
+model Setting {
+  id        String @id @default(cuid())
+  key       String @unique
+  value     String // Can store JSON for complex settings
+  type      String @default("text") // text, json, image, color
+  category  String @default("general") // general, contact, social, branding
+}
+
+// ============================================
+// ALUMNI
+// ============================================
+
+model Alumni {
+  id            String   @id @default(cuid())
+  name          String
+  graduationYear Int
+  program       String?
+  currentRole   String?
+  organization  String?
+  bio           String?
+  image         String?
+  testimonial   String?
+  linkedin      String?
+  email         String?
+  featured      Boolean  @default(false)
+  published     Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// ============================================
+// RESEARCH
+// ============================================
+
+model Research {
+  id          String   @id @default(cuid())
+  title       String
+  authors     String?  // JSON array of authors
+  abstract    String?
+  content     String?
+  file        String?  // PDF attachment
+  year        Int?
+  category    String   @default("research") // research, project, publication
+  featured    Boolean  @default(false)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ============================================
+// LIBRARY RESOURCES
+// ============================================
+
+model LibraryResource {
+  id          String   @id @default(cuid())
+  title       String
+  author      String?
+  description String?
+  type        String   @default("book") // book, journal, ebook, video
+  link        String?  // External link or internal path
+  cover       String?
+  category    String? // Nursing, Midwifery, Anatomy, etc.
+  available   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ============================================
+// FAQ
+// ============================================
+
+model FAQ {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String
+  category  String   @default("general") // admission, academics, fees, general
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ============================================
+// STUDENT PORTAL (Basic)
+// ============================================
+
+model Student {
+  id           String   @id @default(cuid())
+  studentId    String   @unique
+  name         String
+  email        String   @unique
+  phone        String?
+  program      String?
+  year         Int?
+  semester     Int?
+  avatar       String?
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Timetable {
+  id        String   @id @default(cuid())
+  program   String
+  year      Int
+  semester  Int
+  day       String   // Monday, Tuesday, etc.
+  startTime String
+  endTime   String
+  course    String
+  venue     String?
+  lecturer  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
