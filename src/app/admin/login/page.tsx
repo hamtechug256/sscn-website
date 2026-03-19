@@ -105,7 +105,7 @@ export default function AdminLoginPage() {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="admin@sscn.ac.ug"
+                    placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="pl-10 h-11 border-gray-200 focus:border-sky-500 focus:ring-sky-500"
