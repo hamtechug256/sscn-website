@@ -2,11 +2,17 @@
 # This ensures smooth deployment and preserves SEO
 
 [build]
-  command = "npm run build"
+  command = """
+    npx prisma generate &&
+    npx prisma db push --accept-data-loss &&
+    npx prisma db seed &&
+    npm run build
+  """
   publish = ".next"
 
 [build.environment]
   NODE_VERSION = "20"
+  DATABASE_URL = "file:./db/production.db"
 
 # Next.js Runtime Plugin (required for Next.js 16)
 [[plugins]]
