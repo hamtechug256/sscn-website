@@ -4,6 +4,9 @@ import { Badge } from '@/components/ui/badge'
 import { Header, Footer, WhatsAppButton } from '@/components/layout'
 import { BookOpen, ExternalLink, FileText, Video } from 'lucide-react'
 
+// Force dynamic rendering for Netlify compatibility
+export const dynamic = 'force-dynamic'
+
 async function getLibraryResources() {
   return db.libraryResource.findMany({
     where: { available: true },

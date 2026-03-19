@@ -4,6 +4,9 @@ import { Badge } from '@/components/ui/badge'
 import { Header, Footer, WhatsAppButton } from '@/components/layout'
 import { Microscope, FileText, Users, Calendar, ExternalLink } from 'lucide-react'
 
+// Force dynamic rendering for Netlify compatibility
+export const dynamic = 'force-dynamic'
+
 async function getPublishedResearch() {
   return db.research.findMany({
     where: { published: true },

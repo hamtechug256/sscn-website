@@ -10,6 +10,9 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 
+// Force dynamic rendering for Netlify compatibility
+export const dynamic = 'force-dynamic'
+
 async function getActiveFAQs() {
   return db.fAQ.findMany({
     where: { active: true },
