@@ -3,7 +3,6 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('🌱 Seeding database with Ugandan demo content...\n');
 
   // Create Site Settings
   const settingsData = [

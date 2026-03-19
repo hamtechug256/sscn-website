@@ -1,7 +1,8 @@
 # Netlify Configuration for SSCN Website
+# Neon PostgreSQL Database
 
 [build]
-  command = "chmod +x build.sh && ./build.sh"
+  command = "npx prisma generate && npm run build"
   publish = ".next"
 
 [build.environment]
