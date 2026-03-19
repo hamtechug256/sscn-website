@@ -38,6 +38,7 @@ const navigation = [
   { name: 'Programs', href: '/admin/programs', icon: GraduationCap, description: 'Academic programs' },
   { name: 'Downloads', href: '/admin/downloads', icon: Download, description: 'Resources & forms' },
   { name: 'Inquiries', href: '/admin/contacts', icon: MessageSquare, description: 'Contact messages' },
+  { name: 'Users', href: '/admin/users', icon: User, description: 'Manage admin users' },
   { name: 'Settings', href: '/admin/settings', icon: Settings, description: 'Site configuration' },
 ]
 
